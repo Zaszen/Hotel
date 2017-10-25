@@ -1,0 +1,64 @@
+﻿<Window x:Class="AppHotel.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AppHotel"
+        xmlns:local1="clr-namespace:AppHotel.ViewModel"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="605.52" Width="1105.342">
+    <Window.DataContext>
+        <local1:ViewModelCollectionPiece></local1:ViewModelCollectionPiece>
+    </Window.DataContext>
+    <!--<Window.DataContext>
+        <local1:ViewModelCollectionPiece></local1:ViewModelCollectionPiece>
+    </Window.DataContext>-->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition ></ColumnDefinition>
+            <ColumnDefinition Width="5"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <ListBox Grid.Column="4" x:Name="listePiece" HorizontalAlignment="Left" Height="566" Grid.RowSpan="6" VerticalAlignment="Top" Width="537" Grid.ColumnSpan="3" ItemsSource="{Binding Hotel}"  SelectedItem="{Binding Path=SelectedItem}" Margin="0,2,0,0">
+            
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="-"></Label>
+                        <Label Content="Superficie:"></Label>
+                        <Label Content="{Binding Superficie}"></Label>
+                        <Label Content="m², Capacité:"></Label>
+                        <Label Content="{Binding Capacite}"></Label>
+                        <Label Content="place(s), Prix: "></Label>
+                        <Label Content="{Binding PrixJournalier}"></Label>
+                        <Label Content="€, Climatisation: "></Label>
+                        <Label Content="{Binding TxtClimatisation}"></Label>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Label Content="Superficie: " Grid.Column="0" Grid.Row="1" Margin="100,33,0,0"></Label>
+        <TextBox HorizontalAlignment="Left"  x:Name="txtboxSuperficie" Height="23" Margin="28.6,36,0,0" TextWrapping="Wrap" Text="{Binding TempPiece.Superficie, Mode=TwoWay}" VerticalAlignment="Top" Width="120" Grid.Column="1" Grid.Row="1"/>
+        <Label Content="Capacité: " Grid.Column="0" Grid.Row="2" Margin="100,33,0,0"></Label>
+        <TextBox HorizontalAlignment="Left" x:Name="txtboxCapacite" Height="23" Margin="28.6,36,0,0" TextWrapping="Wrap" Text="{Binding TempPiece.Capacite, Mode=TwoWay}" VerticalAlignment="Top" Width="120" Grid.Column="1" Grid.Row="2"/>
+        <Label Content="Prix: " Grid.Column="0" Grid.Row="3" Margin="100,33,0,0"></Label>
+        <TextBox HorizontalAlignment="Left" x:Name="txtBoxPrix" Height="23" Margin="28.6,36,0,0" TextWrapping="Wrap" Text="{Binding TempPiece.PrixJournalier, Mode=TwoWay}" VerticalAlignment="Top" Width="120" Grid.Column="1" Grid.Row="3"/>
+        <Label Content="Climatisation: " Grid.Column="0" Grid.Row="4" Margin="100,24,0,0"></Label>
+        <CheckBox Content="" x:Name="chkboxClimatisation"  IsChecked="{Binding TempPiece.Climatisation, Mode=TwoWay}" Grid.Column="1" HorizontalAlignment="Left" Margin="28.6,30,0,0" Grid.Row="4" VerticalAlignment="Top"/>
+        <Button Content="Ajouter" Command="{Binding AjoutPiece }" Grid.Column="2" HorizontalAlignment="Left" Margin="45.2,50,0,0" Grid.Row="5" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Supprimer" Grid.Column="1" HorizontalAlignment="Left" Command="{Binding SuprimmerPiece}" CommandParameter="{Binding ElementName=listePiece, Path=SelectedItem}" Margin="70.6,50,0,0" Grid.Row="5" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Editer" Grid.Column="0" HorizontalAlignment="Left" Command="{Binding EditerPiece}" CommandParameter="{Binding ElementName=listePiece, Path=SelectedItem}" Margin="70.6,50,0,0" Grid.Row="5" VerticalAlignment="Top" Width="75"/>
+    </Grid>
+</Window>
